@@ -1,8 +1,6 @@
 #define _GNU_SOURCE
 
-#ifdef DEBUG
 #include <stdio.h>
-#endif
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
@@ -10,6 +8,7 @@
 
 #include "includes.h"
 #include "attack.h"
+#include "util.h"
 
 
 void attack_parse(char *buf, int len)
